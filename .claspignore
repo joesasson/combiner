@@ -1,4 +1,6 @@
+
+node_modules/**/
 **/**
-!src/Combiner.ts
 !src/utils.ts
 !appsscript.json
+!src/Combiner.ts
