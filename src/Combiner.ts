@@ -1,6 +1,6 @@
 function combineSheets(){
   // Get the values of each one of the sheets in the folder and append them to a master list, then create a combined file and set values there
-  let folders = DriveApp.getFoldersByName("Tester Hard Count") // FolderIterator
+  let folders = DriveApp.getFoldersByName("Hard Count of Warehouse") // FolderIterator
   // get all file ids
   let folder = folders.next() // first folder with that name
   let files = folder.getFiles()
@@ -19,12 +19,11 @@ function combineSheets(){
   }, [])
   // create a new spreadsheet and set values on first sheet
   let newSs = SpreadsheetApp.create("Combined")
-
-  createNewSheetWithData(newSs, [newData], "Combined scans")
+  createNewSheetWithData(newSs, newData, "All scans")
+  newSs.deleteSheet(newSs.getSheetByName("Sheet1"))
   let fileId = newSs.getId()
   let file = DriveApp.getFileById(fileId)
   folder.addFile(file)
   DriveApp.getRootFolder().removeFile(file)
-
 }
 
